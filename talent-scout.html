@@ -1,0 +1,80 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TalentScout</title>
+  <link rel="preconnect" href="https://unpkg.com" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <section class="signin-page" id="signinPage">
+    <div class="signin-hero">
+      <div class="brand big"><div class="brand-mark"><i class="ph ph-sparkle"></i></div><div><strong>TalentScout</strong><span>AI resume intelligence</span></div></div>
+      <h1>Screen resumes with calmer signals and clearer decisions.</h1>
+      <p>Upload batches, compare talent, identify hidden gems, and export shortlist-ready insights from one soft, focused workspace.</p>
+      <div class="signin-points">
+        <span><i class="ph ph-shield-check"></i> Schema-validated AI output</span>
+        <span><i class="ph ph-file-text"></i> PDF and DOCX parsing</span>
+        <span><i class="ph ph-gem"></i> Hidden-gem detection</span>
+      </div>
+    </div>
+    <form class="signin-card" id="signinForm">
+      <p class="eyebrow">Welcome back</p>
+      <h2>Sign in to TalentScout</h2>
+      <label>Email</label>
+      <input id="emailInput" type="email" value="recruiter@talentscout.ai" required />
+      <label>Password</label>
+      <input id="passwordInput" type="password" value="demo1234" required />
+      <button class="primary" type="submit"><i class="ph ph-sign-in"></i>Sign in</button>
+      <p class="helper">Demo sign-in unlocks the local workspace. Backend auth can be added next.</p>
+    </form>
+  </section>
+
+  <main class="app-shell hidden" id="appShell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark"><i class="ph ph-sparkle"></i></div><div><strong>TalentScout</strong><span>Resume intelligence</span></div></div>
+      <nav class="nav"><button class="active"><i class="ph ph-squares-four"></i>Dashboard</button><button><i class="ph ph-users-three"></i>Candidates</button><button><i class="ph ph-chart-donut"></i>Insights</button></nav>
+      <a class="export" href="/api/export-csv"><i class="ph ph-download-simple"></i>Export CSV</a>
+    </aside>
+
+    <section class="workspace">
+      <header class="topbar">
+        <div><h1>Find the strongest fit with warmer, smarter signals.</h1></div>
+        <div class="top-actions"><div class="state-pill" id="statePill"><i class="ph ph-circle-notch"></i>idle</div><button class="ghost" id="signoutBtn"><i class="ph ph-sign-out"></i>Sign out</button></div>
+      </header>
+
+      <section class="summary-row">
+        <article><i class="ph ph-file-arrow-up"></i><div><span id="statFiles">0</span><p>Uploaded resumes</p></div></article>
+        <article><i class="ph ph-medal"></i><div><span id="statTop">--</span><p>Top score</p></div></article>
+        <article><i class="ph ph-gem"></i><div><span id="statGems">0</span><p>Hidden gems</p></div></article>
+      </section>
+
+      <section class="control-grid">
+        <div class="upload-zone" id="dropzone">
+          <input id="fileInput" type="file" multiple accept=".pdf,.docx,.txt" />
+          <i class="ph ph-cloud-arrow-up"></i>
+          <h2>Drop resumes here</h2>
+          <p>PDF, DOCX, or TXT files are cached by the Python API before analysis.</p>
+          <button id="browseBtn"><i class="ph ph-folder-open"></i>Choose files</button>
+          <div class="file-list" id="fileList"></div>
+        </div>
+        <div class="jd-panel">
+          <label for="jobDescription">Job description</label>
+          <textarea id="jobDescription" placeholder="Paste role requirements, must-have skills, experience level, and team context..."></textarea>
+          <button class="primary" id="analyzeBtn"><i class="ph ph-magic-wand"></i>Analyze candidates</button>
+          <p class="helper" id="message">Upload resumes and paste a job description to begin.</p>
+        </div>
+      </section>
+
+      <section class="results"><div class="section-head"><h2>Candidate ranking</h2><span id="resultCount">No results yet</span></div><div class="candidate-grid" id="candidateGrid"></div></section>
+    </section>
+  </main>
+
+  <aside class="details" id="detailsPanel"><button class="icon-btn" id="closePanel" aria-label="Close"><i class="ph ph-x"></i></button><div id="detailsContent"><p class="empty">Select a candidate to view the detailed scorecard.</p></div></aside>
+  <div class="panel-scrim" id="panelScrim"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
+
